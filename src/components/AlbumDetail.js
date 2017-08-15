@@ -1,23 +1,31 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image} from 'react-native';
 
-const AlbumDetail = (props) => {
-    const { textStyle, viewStyle } = styles;
+const AlbumDetail = ({ album }) => {
+    const { viewStyle, imageStyle } = styles;
+    const pic = {
+        uri: album.image
+    };
 
     return (
         <View style={viewStyle}>
-            <Text style={textStyle}>Album Detail</Text>
+            <Text>Artist: {album.artist}</Text>
+            <Text>Title: {album.title}</Text>
+            <Image source={pic} style={imageStyle} />
         </View>
     );
 };
 
 const styles = {
-    textStyle: {
-        fontSize: 20
-    },
     viewStyle: {
-        backgroundColor: '#ddd',
-        alignItems: 'center'
+        alignItems: 'center',
+        elevation: 1,
+        marginBottom: 2
+    },
+    imageStyle: {
+        width: 200,
+        height: 200,
+        marginBottom: 2
     }
 };
 
