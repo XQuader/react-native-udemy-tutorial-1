@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, Image} from 'react-native';
+import { Text, View, Image } from 'react-native';
 
 const AlbumDetail = ({ album }) => {
     const { viewStyle, imageStyle } = styles;
-    const pic = {
+    const picture = {
         uri: album.image
     };
 
@@ -11,7 +11,7 @@ const AlbumDetail = ({ album }) => {
         <View style={viewStyle}>
             <Text>Artist: {album.artist}</Text>
             <Text>Title: {album.title}</Text>
-            <Image source={pic} style={imageStyle} />
+            <Image source={picture} style={imageStyle} />
         </View>
     );
 };
