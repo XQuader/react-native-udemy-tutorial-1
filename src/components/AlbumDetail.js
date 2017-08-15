@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const Header = (props) => {
+const AlbumDetail = (props) => {
     const { textStyle, viewStyle } = styles;
 
     return (
         <View style={viewStyle}>
-            <Text style={textStyle}>{props.children}</Text>
+            <Text style={textStyle}>Album Detail</Text>
         </View>
     );
 };
@@ -17,11 +17,8 @@ const styles = {
     },
     viewStyle: {
         backgroundColor: '#ddd',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 60,
-        elevation: 2
+        alignItems: 'center'
     }
 };
 
-export default Header;
+export default AlbumDetail;
