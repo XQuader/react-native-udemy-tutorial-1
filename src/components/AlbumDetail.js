@@ -1,31 +1,68 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, Image, View } from 'react-native';
+import Card from './Card';
+import CardSection from './CardSection';
 
 const AlbumDetail = ({ album }) => {
-    const { viewStyle, imageStyle } = styles;
-    const picture = {
-        uri: album.image
-    };
+    const { title, artist, thumbnail_image, image } = album;
+    const {
+        coverStyle,
+        avatarStyle,
+        headerContainerStyle,
+        titleStyle,
+        avatarContainerStyle
+    } = styles;
 
     return (
-        <View style={viewStyle}>
-            <Text>Artist: {album.artist}</Text>
-            <Text>Title: {album.title}</Text>
-            <Image source={picture} style={imageStyle} />
-        </View>
+        <Card>
+            <CardSection>
+                <View style={avatarContainerStyle}>
+                    <Image
+                        style={avatarStyle}
+                        source={{ uri: thumbnail_image }}
+                    />
+                </View>
+                <View style={headerContainerStyle}>
+                    <Text style={titleStyle}>{title}</Text>
+                    <Text>{artist}</Text>
+                </View>
+            </CardSection>
+            <CardSection>
+                <Image
+                    style={coverStyle}
+                    source={{ uri: image }}
+                />
+            </CardSection>
+            <CardSection>
+                <Text>Buy now</Text>
+            </CardSection>
+        </Card>
     );
 };
 
 const styles = {
-    viewStyle: {
-        alignItems: 'center',
-        elevation: 1,
-        marginBottom: 2
+    coverStyle: {
+        height: 300,
+        width: 0,
+        flex: 1
     },
-    imageStyle: {
-        width: 200,
-        height: 200,
-        marginBottom: 2
+    avatarContainerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+        marginRight: 10
+    },
+    avatarStyle: {
+        width: 50,
+        height: 50,
+    },
+    headerContainerStyle: {
+        flexDirection: 'column',
+        justifyContent: 'space-around'
+    },
+    titleStyle: {
+        fontSize: 20,
+        fontWeight: 'bold'
     }
 };
 

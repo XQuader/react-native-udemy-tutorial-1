@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import AlbumDetail from './AlbumDetail';
 
 class AlbumList extends Component {
@@ -12,20 +12,12 @@ class AlbumList extends Component {
     }
 
     render() {
-        const { viewStyle } = styles;
-
         return (
-            <View style={viewStyle}>
+            <ScrollView>
                 {this.state.albums.map(album => <AlbumDetail key={album.title} album={album} />)}
-            </View>
+            </ScrollView>
         );
     }
 }
-
-const styles = {
-    viewStyle: {
-        alignItems: 'center'
-    }
-};
 
 export default AlbumList;
