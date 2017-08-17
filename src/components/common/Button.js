@@ -15,13 +15,13 @@ const styles = {
         borderRadius: 5,
         borderWidth: 1,
         backgroundColor: '#fff',
-        alignSelf: 'stretch',
+        justifyContent: 'center',
+        alignItems: 'center',
         flex: 1
     },
     textStyle: {
         fontWeight: '600',
         fontSize: 16,
-        alignSelf: 'center',
         padding: 10,
         color: '#007aff'
     }
