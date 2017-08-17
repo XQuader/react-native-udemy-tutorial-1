@@ -3,9 +3,9 @@ import { TextInput, View, Text } from 'react-native';
 
 const Input = (props) => (
       <View style={styles.containerStyle}>
-          <Text style={{ flex: 3 }}>{props.label}</Text>
+          <Text style={styles.labelStyle}>{props.label}</Text>
           <TextInput
-              style={{ flex: 10 }}
+              style={styles.inputStyle}
               onChangeText={props.onChangeText}
               value={props.value}
           />
@@ -15,9 +15,22 @@ const Input = (props) => (
 
 const styles = {
     containerStyle: {
+        height: 40,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
         alignItems: 'center',
+        flex: 1
+    },
+    inputStyle: {
+        color: '#000',
+        paddingRight: 5,
+        paddingLeft: 5,
+        fontSize: 18,
+        lineHeight: 23,
+        flex: 2
+    },
+    labelStyle: {
+        fontSize: 18,
+        paddingLeft: 20,
         flex: 1
     }
 };
