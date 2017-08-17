@@ -6,7 +6,7 @@ import LibraryList from './components/LibraryList';
 class App extends Component {
     render() {
         return (
-            <View>
+            <View style={{ flex: 1 }}>
                 <Header>Tech Stack</Header>
                 <LibraryList />
             </View>

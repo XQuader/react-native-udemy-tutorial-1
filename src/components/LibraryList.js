@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text } from 'react-native';
-import { Card, CardSection } from './common';
+import { ListView } from 'react-native';
 import * as actions from '../actions';
+import ListItem from './ListItem';
 
 class LibraryList extends Component {
     componentWillMount() {
-        this.props.fetchLibraries();
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2
+        });
+
+        // this.props.fetchLibraries();
+        this.dataSource = ds.cloneWithRows(this.props.libraries);
+    }
+
+    renderRow(library) {
+        return <ListItem library={library} />;
     }
 
     render() {
         return (
-            <Card>
-                {this.props.libraries.map(lib => <CardSection key={lib.id}><Text>{lib.title}</Text></CardSection>)}
-            </Card>
+            <ListView
+                dataSource={this.dataSource}
+                renderRow={this.renderRow}
+            />
         );
     }
 }
