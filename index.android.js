@@ -1,4 +1,8 @@
+import React from 'react';
 import { AppRegistry } from 'react-native';
 import App from './src/App';
 
-AppRegistry.registerComponent('NativeTutorial', () => App);
+import configureStore from './src/Store';
+const store = configureStore();
+
+AppRegistry.registerComponent('NativeTutorial', () => () => <App store={store} />);

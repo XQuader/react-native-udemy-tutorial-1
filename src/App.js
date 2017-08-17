@@ -6,15 +6,7 @@ class App extends Component {
     render() {
         return (
             <View>
-                <Header>Auth App</Header>
-                <Card>
-                    <CardSection>
-                        <Button>Click me</Button>
-                    </CardSection>
-                    <CardSection>
-                        <Button>Stop me</Button>
-                    </CardSection>
-                </Card>
+                <Header>Tech Stack</Header>
                 <Card>
                     <CardSection>
                         <Button>Click me</Button>
