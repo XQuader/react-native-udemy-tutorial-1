@@ -18,8 +18,6 @@ class LibraryList extends Component {
     }
 }
 
-function mapStateToProps({ libraries, selected }) {
-    return { libraries, selected };
-}
+const mapStateToProps = ({ libraries, selectedLibraryId }) => ({ libraries, selectedLibraryId });
 
 export default connect(mapStateToProps, actions)(LibraryList);
