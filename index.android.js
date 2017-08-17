@@ -1,8 +1,13 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { AppRegistry } from 'react-native';
+import configureStore from './src/Store';
 import App from './src/App';
 
-import configureStore from './src/Store';
 const store = configureStore();
 
-AppRegistry.registerComponent('NativeTutorial', () => () => <App store={store} />);
+AppRegistry.registerComponent('NativeTutorial', () => () => (
+    <Provider store={store}>
+        <App />
+    </Provider>
+));
