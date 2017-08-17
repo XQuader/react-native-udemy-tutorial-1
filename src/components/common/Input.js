@@ -6,7 +6,7 @@ const Input = (props) => (
           <Text style={styles.labelStyle}>{props.label}</Text>
           <TextInput
               autoCorrect={false}
-              secureTextEntry={props.secureTextEntry || false}
+              secureTextEntry={props.secureTextEntry}
               placeholder={props.placeholder}
               style={styles.inputStyle}
               onChangeText={props.onChangeText}
