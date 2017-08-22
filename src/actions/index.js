@@ -1,22 +1,16 @@
 import { EMAIL_CHANGED, LOGIN, PASSWORD_CHANGED } from './types';
 
-export function login({ email, password }) {
-    return {
-        type: LOGIN,
-        payload: { email, password }
-    };
-}
+export const login = ({ email, password }) => ({
+    type: LOGIN,
+    payload: { email, password }
+});
 
-export function emailChanged(email) {
-    return {
-        type: EMAIL_CHANGED,
-        payload: email
-    };
-}
+export const emailChanged = email => ({
+    type: EMAIL_CHANGED,
+    payload: email
+});
 
-export function passwordChanged(password) {
-    return {
-        type: PASSWORD_CHANGED,
-        payload: password
-    };
-}
+export const passwordChanged = password => ({
+    type: PASSWORD_CHANGED,
+    payload: password
+});
