@@ -6,12 +6,12 @@ class EmployeeList extends Component {
     render() {
         return (
             <View>
-                <Text>Asdasdasd</Text>
-                <Text>Asdasdasd</Text>
-                <Text>Asdasdasd</Text>
-                <Text>Asdasdasd</Text>
-                <Text>Asdasdasd</Text>
-                <Text>Asdasdasd</Text>
+                <Text>Employee 1</Text>
+                <Text>Employee 2</Text>
+                <Text>Employee 3</Text>
+                <Text>Employee 4</Text>
+                <Text>Employee 5</Text>
+                <Text>Employee 6</Text>
             </View>
         );
     }
