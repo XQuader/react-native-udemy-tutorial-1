@@ -1,11 +1,13 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+
 import devToolsEnhancer from 'remote-redux-devtools';
 import reducers from './reducers';
 
 export default function configureStore() {
     const store = createStore(
         reducers,
-        devToolsEnhancer()
+        devToolsEnhancer(), applyMiddleware(ReduxThunk)
     );
 
     if (module.hot) {
