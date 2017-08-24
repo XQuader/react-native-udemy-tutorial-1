@@ -2,13 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Picker, Text } from 'react-native';
 import { Card, CardSection, Input, Button } from './common';
-import { employeeUpdate } from '../actions';
+import { employeeUpdate, employeeCreate } from '../actions';
 
 class EmployeeCreate extends Component {
     updater = prop => value => this.props.employeeUpdate({ prop, value });
     updateName = this.updater('name');
     updatePhone = this.updater('phone');
     updateShift = this.updater('shift');
+
+    employeeCreate = () => {
+        const { name, phone, shift } = this.props;
+
+        if (name && phone) {
+            this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
+        }
+    };
+
+    renderPickerItems() {
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+        return days.map(day => <Picker.Item label={day} value={day} key={day} />);
+    }
 
     render() {
         return (
@@ -38,18 +52,12 @@ class EmployeeCreate extends Component {
                         selectedValue={this.props.shift}
                         onValueChange={this.updateShift}
                     >
-                        <Picker.Item label="Monday" value="Monday" />
-                        <Picker.Item label="Tuesday" value="Tuesday" />
-                        <Picker.Item label="Wednesday" value="Wednesday" />
-                        <Picker.Item label="Thursday" value="Thursday" />
-                        <Picker.Item label="Friday" value="Friday" />
-                        <Picker.Item label="Saturday" value="Saturday" />
-                        <Picker.Item label="Sunday" value="Sunday" />
+                        {this.renderPickerItems()}
                     </Picker>
                 </CardSection>
 
                 <CardSection>
-                    <Button>Create</Button>
+                    <Button onPress={this.employeeCreate}>Create</Button>
                 </CardSection>
             </Card>
         );
@@ -71,4 +79,4 @@ const mapStateToProps = state => {
     return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeCreate);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
