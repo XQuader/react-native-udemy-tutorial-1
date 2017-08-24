@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import Router from './Router';
 
+console.ignoredYellowBox = [
+    'Setting a timer'
+];
+
 class App extends Component {
     componentWillMount() {
         firebase.initializeApp({

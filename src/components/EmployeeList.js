@@ -1,19 +1,27 @@
+import _ from 'underscore';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
+import { empoyeesFetch } from '../actions';
 
 class EmployeeList extends Component {
+    componentWillMount() {
+        this.props.empoyeesFetch();
+    }
+
+    renderEmployee({ name, phone, shift }, id) {
+        return <Text key={id}>{name}</Text>;
+    }
+
     render() {
         return (
             <View>
-                <Text>Employee 1</Text>
-                <Text>Employee 2</Text>
-                <Text>Employee 3</Text>
-                <Text>Employee 4</Text>
-                <Text>Employee 5</Text>
-                <Text>Employee 6</Text>
+                {_.map(this.props.employees, this.renderEmployee)}
             </View>
         );
     }
 }
 
-export default EmployeeList;
+const mapStateToProps = ({ employees }) => ({ employees });
+
+export default connect(mapStateToProps, { empoyeesFetch })(EmployeeList);
