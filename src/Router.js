@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { Scene, Router, ActionConst, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 
 class RouterComponent extends Component {
+    constructor(props) {
+        super(props);
+
+        firebase.auth().onAuthStateChanged(user => (user ? Actions.employeeList() : Actions.login()));
+    }
     render() {
         return (
             <Router
