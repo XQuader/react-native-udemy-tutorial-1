@@ -1,27 +1,56 @@
 import _ from 'underscore';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
-import { empoyeesFetch } from '../actions';
+import { ListView } from 'react-native';
+import ListItem from './ListItem';
+import { employeesFetch } from '../actions';
 
 class EmployeeList extends Component {
     componentWillMount() {
         this.props.empoyeesFetch();
+        this.createDataSource(this.props);
     }
 
-    renderEmployee({ name, phone, shift }, id) {
-        return <Text key={id}>{name}</Text>;
+    componentWillReceiveProps(nextProps) {
+        this.createDataSource(nextProps);
+    }
+
+
+    createDataSource({ employees }) {
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2
+        });
+
+        this.datasource = ds.cloneWithRows(employees);
+    }
+
+    renderEmployee(employee) {
+        return (
+            <ListItem key={employee.uid} employee={employee} />
+        );
     }
 
     render() {
         return (
-            <View>
-                {_.map(this.props.employees, this.renderEmployee)}
-            </View>
+            <ListView
+                enableEmptySections
+                dataSource={this.datasource}
+                renderRow={this.renderEmployee}
+            />
         );
+    }
+
+    componentWillUnmount(){
+        this.props
     }
 }
 
-const mapStateToProps = ({ employees }) => ({ employees });
+const styles = {
+    employeeTextStyle: {}
+};
 
-export default connect(mapStateToProps, { empoyeesFetch })(EmployeeList);
+const mapStateToProps = ({ employees }) => ({
+    employees: _.map(employees, (employee, uid) => ({ ...employee, uid }))
+});
+
+export default connect(mapStateToProps, { empoyeesFetch: employeesFetch })(EmployeeList);

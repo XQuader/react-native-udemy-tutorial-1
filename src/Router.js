@@ -4,6 +4,7 @@ import { Scene, Router, ActionConst, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
+import EmployeeEdit from './components/EmployeeEdit';
 
 class RouterComponent extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class RouterComponent extends Component {
 
         firebase.auth().onAuthStateChanged(user => (user ? Actions.employeeList() : Actions.login()));
     }
+
     render() {
         return (
             <Router
@@ -35,7 +37,13 @@ class RouterComponent extends Component {
                         <Scene
                             key="employeeCreate"
                             component={EmployeeCreate}
-                            title="Employee"
+                            title="Create Employee"
+                            back
+                        />
+                        <Scene
+                            key="employeeEdit"
+                            component={EmployeeEdit}
+                            title="Edit Employee"
                             back
                         />
                     </Scene>
