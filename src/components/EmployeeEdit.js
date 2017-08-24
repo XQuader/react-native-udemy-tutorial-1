@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
 import { employeeSave, employeeFire, employeeUpdate, employeeClear } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { Card, CardSection, Button, Confirm } from './common';
 import EmployeeForm from './EmployeeForm';
 
 class EmployeeCreate extends Component {
+    state = { fireModalVisible: false };
+
     componentWillMount() {
         _.each(this.props.employee, (value, prop) => this.props.employeeUpdate({ prop, value }));
     }
@@ -19,11 +21,20 @@ class EmployeeCreate extends Component {
         }
     };
 
-    handleFire = () => {
+    setModalVisibility = (visible) => {
+        this.setState({ fireModalVisible: visible });
+    };
+
+    handleAcceptFire = () => {
         const { uid } = this.props.employee;
 
         this.props.employeeFire(uid);
+        this.setModalVisibility(false);
     };
+
+    handleDeclineFire = () => this.setModalVisibility(false);
+
+    handleFire = () => this.setModalVisibility(true);
 
     handleText = () => {
         const { phone, shift } = this.props;
@@ -44,6 +55,11 @@ class EmployeeCreate extends Component {
                 <CardSection>
                     <Button onPress={this.handleFire}>Fire</Button>
                 </CardSection>
+                <Confirm
+                    onAccept={this.handleAcceptFire}
+                    onDecline={this.handleDeclineFire}
+                    visible={this.state.fireModalVisible}
+                >Are you sure you want to fire employee?</Confirm>
             </Card>
         );
     }
